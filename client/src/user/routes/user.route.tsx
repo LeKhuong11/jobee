@@ -8,6 +8,19 @@ const userRoutes: RouteObject[] = [
         element: <Home /> 
     },
     {
+        path: 'user',
+        children: [
+            {
+                index: true,
+                element: <h1>User Page</h1>
+            },
+            {
+                path: 'profile',
+                element: <h1>User Profile Page</h1>
+            }
+        ]
+    },
+    {
         path: '/hello-world',
         element: <Counter />
     }
