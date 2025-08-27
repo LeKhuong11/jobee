@@ -4,7 +4,10 @@ import adminRoutes from '@admin/routes/admin.route';
 
 const router = createBrowserRouter([
   ...userRoutes,
-  ...adminRoutes,
+  {
+    path: '/admin',
+    children: adminRoutes
+  }
 ]);
 
 export default router;
