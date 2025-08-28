@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       '@admin': path.resolve(__dirname, 'src/admin'),
       '@user': path.resolve(__dirname, 'src/user'),
+      '@components': path.resolve(__dirname, 'src/components'),
       '@config': path.resolve(__dirname, 'src/config'),
       '@types': path.resolve(__dirname, 'src/types'),
       '@utils': path.resolve(__dirname, 'src/utils'),

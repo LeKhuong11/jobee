@@ -16,35 +16,26 @@ const resources = {
 
 
 i18n
-  .use(LanguageDetector) // Tự động detect ngôn ngữ từ browser
-  .use(initReactI18next) // Kết nối với React
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     resources,
-    lng: 'vi', // Ngôn ngữ mặc định (có thể đặt 'en' nếu muốn)
-    fallbackLng: 'en', // Ngôn ngữ dự phòng
-    debug: false, // Đặt true để debug
+    lng: 'vi',
+    fallbackLng: 'en',
+    debug: false,
     
     interpolation: {
-      escapeValue: false, // React đã tự động escape HTML
+      escapeValue: false,
     },
     
-    // Cấu hình React
     react: {
-      useSuspense: false, // QUAN TRỌNG: Tắt suspense để tránh lỗi context
+      useSuspense: false,
     },
     
-    // Cấu hình Language Detection
     detection: {
-      // Thứ tự ưu tiên detect ngôn ngữ
       order: ['localStorage', 'navigator', 'htmlTag'],
-      
-      // Lưu ngôn ngữ đã chọn vào localStorage
       caches: ['localStorage'],
-      
-      // Key để lưu trong localStorage
       lookupLocalStorage: 'i18nextLng',
-      
-      // Không detect từ subdomain
       lookupFromSubdomainIndex: 0,
     },
   });

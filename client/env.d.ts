@@ -1,5 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    REACT_APP_BACKEND_URL?: string;
+    VITE_APP_NAME: string;
+    VITE_BACKEND_URL: string;
   }
 }

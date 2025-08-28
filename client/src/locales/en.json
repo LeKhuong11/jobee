@@ -1,6 +1,9 @@
 {
   "welcome": "Welcome",
   "greeting": "Hello, {{name}}!",
+  "popularJobs": "Popular Job Categories",
+  "explore": "Explore opportunities in trending industries",
+
   "navigation": {
     "home": "Home",
     "about": "About",

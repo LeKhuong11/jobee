@@ -1,10 +1,10 @@
-import Counter from '@user/pages/Counter';
 import Home  from '@user/pages/Home.tsx';
+import TailwindTest from '@components/TailwindTest';
 import { RouteObject } from 'react-router-dom';
 
 const userRoutes: RouteObject[] = [
     { 
-        path: '/', 
+        index: true,
         element: <Home /> 
     },
     {
@@ -21,8 +21,8 @@ const userRoutes: RouteObject[] = [
         ]
     },
     {
-        path: '/hello-world',
-        element: <Counter />
+        path: 'tailwind',
+        element: <TailwindTest />
     }
 ]
 export default userRoutes;

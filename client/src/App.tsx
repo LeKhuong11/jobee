@@ -1,14 +1,13 @@
-import { store } from "@context/store"
-import { Provider } from "react-redux"
+
 import { RouterProvider } from "react-router-dom"
 import router from "./routes"
 
 function App() {
     
   return (
-    <Provider store={store}>
+    <div className="container mx-auto px-4">
       <RouterProvider router={router} />
-    </Provider>
+    </div>
   )
 }
 
