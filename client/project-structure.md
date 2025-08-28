@@ -78,3 +78,18 @@ src/
 ├── App.tsx                       # Root: Provider Redux, Router
 ├── main.tsx                      # Entry point (Vite)
 └── routes.tsx                    # Routing chính: combine adminRoutes + userRoutes
+
+
+├── client
+│   ├──docker
+│   │   ├──Dockerfile
+│
+├── docker
+│   ├──nginx
+│   │   ├──Dockerfile
+│   │   ├──default.conf
+│
+├── server    
+│   ├──docker
+│   │   ├──Dockerfile                 
+└── docker-compose.yml

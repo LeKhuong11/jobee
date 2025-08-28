@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./server:/var/www/html
+      - ./client/build:/usr/share/nginx/html
+    depends_on:
+      - client
+      - server
+    networks:
+      - app_network
+
+  db:
+    image: postgres:17
+    container_name: db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: jobee
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app_network
+
+  server:
+    build:
+      context: ./server/docker
+      dockerfile: Dockerfile
+    container_name: laravel
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    volumes:
+      - ./server:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  client:
+    build:
+      context: ./client/docker
+      dockerfile: Dockerfile
+    container_name: react
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - app_network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
