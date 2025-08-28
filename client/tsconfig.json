@@ -5,6 +5,7 @@
       "@admin/*": ["admin/*"],
       "@user/*": ["user/*"],
       "@components/*": ["components/*"],
+      "@services/*": ["services/*"],
       "@config/*": ["config/*"],
       "@utils/*": ["utils/*"],
       "@context/*": ["context/*"],
