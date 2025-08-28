@@ -3,7 +3,10 @@ import userRoutes from '@user/routes/user.route';
 import adminRoutes from '@admin/routes/admin.route';
 
 const router = createBrowserRouter([
-  ...userRoutes,
+  {
+    path: '/',
+    children: userRoutes
+  },
   {
     path: '/admin',
     children: adminRoutes

@@ -1,6 +1,8 @@
 {
   "welcome": "Chào mừng",
   "greeting": "Xin chào, {{name}}!",
+  "popularJobs": "Danh mục công việc phổ biến",
+  "explore": "Khám phá các cơ hội trong các ngành công nghiệp đang thịnh hành",
   "navigation": {
     "home": "Trang chủ",
     "about": "Giới thiệu",

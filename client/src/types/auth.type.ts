@@ -5,6 +5,7 @@ export interface User {
   email: string;
   name: string;
   role: typeof ROLES.ADMIN | typeof ROLES.USER;
+  //... other fields
 }
 
 export interface AuthState {

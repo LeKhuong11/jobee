@@ -4,6 +4,7 @@
     "paths": {
       "@admin/*": ["admin/*"],
       "@user/*": ["user/*"],
+      "@components/*": ["components/*"],
       "@config/*": ["config/*"],
       "@utils/*": ["utils/*"],
       "@context/*": ["context/*"],
