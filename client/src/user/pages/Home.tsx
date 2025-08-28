@@ -1,9 +1,28 @@
 import LanguageSwitcher from '@components/LanguageSwitcher';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { RootState } from '@context/store';
+import { useAppDispatch } from '@context/hooks';
+import { fetchHello } from '@context/hello/helloSlice';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const { message, loading } = useSelector((state: RootState) => state.hello);
+
+  useEffect(() => {
+    dispatch(fetchHello());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (message) {
+      alert(message);
+    }
+  }, [message]);
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div>
@@ -12,7 +31,9 @@ const Home: React.FC = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">{t('popularJobs')}</h2>
             <p className="text-xl text-gray-600">{t('explore')}</p>
+            <p>{message}</p>
             <LanguageSwitcher />
+            <Link to='/tailwind' />
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
