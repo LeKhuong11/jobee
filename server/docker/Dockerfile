@@ -1,47 +1,40 @@
-FROM php:8.2-fpm-alpine
+FROM wyveo/nginx-php-fpm:php82
 
-# Cài đặt các thư viện cần thiết
+MAINTAINER JOBEE
+
+# Install dependencies và PHP extensions cho PostgreSQL
 RUN apk add --no-cache \
-    libpq \
-    libzip \
-    libpng \
-    libjpeg-turbo \
-    oniguruma \
-    libxml2 \
-    git \
-    # Thư viện phát triển (chỉ cần để build extension)
     libpq-dev \
-    libzip-dev \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    oniguruma-dev \
-    libxml2-dev \
-    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo_pgsql pgsql mbstring zip exif pcntl gd xml bcmath \
-    # Xóa thư viện phát triển để giảm kích thước image
-    && apk del --no-cache libpq-dev libzip-dev libpng-dev libjpeg-turbo-dev oniguruma-dev libxml2-dev
+    && docker-php-ext-install pdo pdo_pgsql
 
-# Cài đặt Composer
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Thiết lập thư mục làm việc
 WORKDIR /var/www/html
 
-# Copy mã nguồn
-COPY . /var/www/html
+# Copy composer files để cache dependencies
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader
 
-# Cài đặt dependencies
-RUN composer install --optimize-autoloader --no-dev --no-scripts
+# Copy toàn bộ source code
+COPY . .
 
-# Tối ưu Laravel
-RUN php artisan config:cache \
-    && php artisan route:cache
+# Generate app key
+RUN php artisan key:generate
 
-# Phân quyền
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
+# Tạo thư mục log và set permissions
+RUN mkdir -p /var/www/html/docker/nginx_log /var/www/html/docker/php_fpm \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/docker \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/docker
 
-# Mở port cho PHP-FPM
-EXPOSE 9000
+# Copy file cấu hình Nginx
+COPY docker/config/app.conf /etc/nginx/conf.d/app.conf
 
-CMD ["php-fpm"]
+# Copy và cấu hình PHP-FPM
+COPY docker/php-fpm.conf /etc/php/8.2/fpm/php-fpm.conf
+
+# Expose port 80 (Nginx)
+EXPOSE 80
+
+# Start PHP-FPM và Nginx
+CMD ["/start.sh"]

@@ -16,7 +16,6 @@ const LanguageSwitcher: React.FC = () => {
 
   return (
     <div className="relative inline-block text-left">
-      {/* Nút chọn ngôn ngữ */}
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium shadow-sm hover:bg-gray-50"
@@ -33,7 +32,6 @@ const LanguageSwitcher: React.FC = () => {
         </svg>
       </button>
 
-      {/* Dropdown */}
       {open && (
         <div className="absolute right-0 mt-2 w-40 rounded-lg border border-gray-200 bg-white shadow-lg">
           <button

@@ -10,7 +10,6 @@ export default function TailwindTest() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
             Tailwind CSS + Redux Test
@@ -20,9 +19,7 @@ export default function TailwindTest() {
           </p>
         </div>
 
-        {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {/* Card 1 - Counter (Redux) */}
           <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-semibold text-gray-800">Counter (Redux)</h3>
@@ -52,7 +49,6 @@ export default function TailwindTest() {
             </div>
           </div>
 
-          {/* Card 2 - Toggle */}
           <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Toggle Switch</h3>
             <div className="flex items-center justify-between">
@@ -72,7 +68,6 @@ export default function TailwindTest() {
             </div>
           </div>
 
-          {/* Card 3 - Progress (tính từ count Redux) */}
           <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Progress Bar</h3>
             <div className="w-full bg-gray-200 rounded-full h-3 mb-2">

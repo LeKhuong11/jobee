@@ -84,12 +84,14 @@ src/
 │   ├──docker
 │   │   ├──Dockerfile
 │
-├── docker
-│   ├──nginx
-│   │   ├──Dockerfile
-│   │   ├──default.conf
-│
 ├── server    
 │   ├──docker
-│   │   ├──Dockerfile                 
+│   │   ├── config
+│   │   ├── nginx_log
+│   │   │   ├── access.log
+│   │   │   ├── error.log
+│   │   ├── php_fpm
+│   │   │   ├── php-fpm.log
+│   │   ├── Dockerfile                 
+├── .dockerignore
 └── docker-compose.yml
