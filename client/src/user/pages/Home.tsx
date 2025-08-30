@@ -1,16 +1,26 @@
 import LanguageSwitcher from '@components/LanguageSwitcher';
+<<<<<<< Updated upstream
 import React, { useEffect } from 'react';
+=======
+import { useEffect } from 'react';
+>>>>>>> Stashed changes
 import { useTranslation } from 'react-i18next';
 import type { RootState } from '@context/store';
 import { useAppDispatch } from '@context/hooks';
 import { fetchHello } from '@context/hello/helloSlice';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { message as messageAntd } from 'antd';
+import Loading from '@components/Loading';
 
-const Home: React.FC = () => {
+function Home() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { message, loading } = useSelector((state: RootState) => state.hello);
+<<<<<<< Updated upstream
+=======
+  const [messageApi, contextHolder] = messageAntd.useMessage();
+>>>>>>> Stashed changes
 
   useEffect(() => {
     dispatch(fetchHello());
@@ -18,20 +28,35 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (message) {
+<<<<<<< Updated upstream
       alert(message);
     }
   }, [message]);
 
   if (loading) return <p>Loading...</p>;
+=======
+      messageApi.open({
+        type: 'success',
+        content: message,
+      });
+    }
+  }, [message, messageApi]);
+
+  if (loading) return <Loading />;
+>>>>>>> Stashed changes
 
   return (
     <div>
+      {contextHolder}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">{t('popularJobs')}</h2>
             <p className="text-xl text-gray-600">{t('explore')}</p>
+<<<<<<< Updated upstream
             <p>{message}</p>
+=======
+>>>>>>> Stashed changes
             <LanguageSwitcher />
             <Link to='/tailwind' />
           </div>
