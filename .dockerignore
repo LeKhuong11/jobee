@@ -1,0 +1,14 @@
+# Loại bỏ logs
+logs/
+server/docker/nginx_log/
+server/docker/php_fpm/
+
+# Loại bỏ dependencies
+client/node_modules/
+server/vendor/
+
+# Loại bỏ files không cần
+.env
+.git
+.gitignore
+*.md

@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./client
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    environment:
+      - APP_ENV=production
+      - APP_KEY=base64:xDZS6y0p0MR39wJjwt8PBhH8jz29OA9ui/DcZ7Rn3fY=
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=jobee
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=123456
+    volumes:
+      - ./server:/var/www/html
+      - ./logs/backend:/var/www/html/storage/logs
+      - ./logs/nginx:/var/www/html/docker/nginx_log
+      - ./logs/php-fpm:/var/www/html/docker/php_fpm
+    networks:
+      - app-network
+
+  db:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=jobee
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./logs/db:/var/log/postgresql
+    command: ["postgres", "-c", "logging_collector=on", "-c", "log_destination=file", "-c", "log_directory=/var/log/postgresql", "-c", "log_filename=postgresql.log"]
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:

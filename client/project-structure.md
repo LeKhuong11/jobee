@@ -78,3 +78,20 @@ src/
 ├── App.tsx                       # Root: Provider Redux, Router
 ├── main.tsx                      # Entry point (Vite)
 └── routes.tsx                    # Routing chính: combine adminRoutes + userRoutes
+
+
+├── client
+│   ├──docker
+│   │   ├──Dockerfile
+│
+├── server    
+│   ├──docker
+│   │   ├── config
+│   │   ├── nginx_log
+│   │   │   ├── access.log
+│   │   │   ├── error.log
+│   │   ├── php_fpm
+│   │   │   ├── php-fpm.log
+│   │   ├── Dockerfile                 
+├── .dockerignore
+└── docker-compose.yml
