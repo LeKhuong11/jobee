@@ -37,8 +37,8 @@ function Home() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">{t('popularJobs')}</h2>
-            <p className="text-xl text-gray-600">{t('explore')}</p>
+            <h2 className="font-heading text-3xl font-bold text-gray-800 mb-4">{t('popularJobs')}</h2>
+            <p className="font-varela text-xl text-gray-600">{t('explore')}</p>
             <LanguageSwitcher />
             <Link to='/tailwind' />
           </div>
@@ -58,8 +58,8 @@ function Home() {
                 <div className={`w-12 h-12 ${category.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <span className="text-2xl">{category.icon}</span>
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-1">{category.name}</h3>
-                <p className="text-gray-600 text-sm">{category.count} jobs</p>
+                <h3 className="font-varela font-bold text-gray-800 mb-1">{category.name}</h3>
+                <p className="font-varela font-medium text-gray-600 text-sm">{category.count} jobs</p>
               </div>
             ))}
           </div>
