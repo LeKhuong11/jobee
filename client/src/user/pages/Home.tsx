@@ -1,9 +1,5 @@
 import LanguageSwitcher from '@components/LanguageSwitcher';
-<<<<<<< Updated upstream
-import React, { useEffect } from 'react';
-=======
 import { useEffect } from 'react';
->>>>>>> Stashed changes
 import { useTranslation } from 'react-i18next';
 import type { RootState } from '@context/store';
 import { useAppDispatch } from '@context/hooks';
@@ -17,10 +13,8 @@ function Home() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { message, loading } = useSelector((state: RootState) => state.hello);
-<<<<<<< Updated upstream
-=======
   const [messageApi, contextHolder] = messageAntd.useMessage();
->>>>>>> Stashed changes
+
 
   useEffect(() => {
     dispatch(fetchHello());
@@ -28,13 +22,6 @@ function Home() {
 
   useEffect(() => {
     if (message) {
-<<<<<<< Updated upstream
-      alert(message);
-    }
-  }, [message]);
-
-  if (loading) return <p>Loading...</p>;
-=======
       messageApi.open({
         type: 'success',
         content: message,
@@ -43,7 +30,6 @@ function Home() {
   }, [message, messageApi]);
 
   if (loading) return <Loading />;
->>>>>>> Stashed changes
 
   return (
     <div>
@@ -53,10 +39,6 @@ function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">{t('popularJobs')}</h2>
             <p className="text-xl text-gray-600">{t('explore')}</p>
-<<<<<<< Updated upstream
-            <p>{message}</p>
-=======
->>>>>>> Stashed changes
             <LanguageSwitcher />
             <Link to='/tailwind' />
           </div>
