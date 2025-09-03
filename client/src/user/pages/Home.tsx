@@ -7,14 +7,12 @@ import { fetchHello } from '@context/hello/helloSlice';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { message as messageAntd } from 'antd';
-import Loading from '@components/Loading';
 
 function Home() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { message, loading } = useSelector((state: RootState) => state.hello);
+  const { message } = useSelector((state: RootState) => state.hello);
   const [messageApi, contextHolder] = messageAntd.useMessage();
-
 
   useEffect(() => {
     dispatch(fetchHello());
@@ -29,8 +27,6 @@ function Home() {
     }
   }, [message, messageApi]);
 
-  if (loading) return <Loading />;
-
   return (
     <div>
       {contextHolder}
@@ -40,7 +36,7 @@ function Home() {
             <h2 className="font-heading text-3xl font-bold text-gray-800 mb-4">{t('popularJobs')}</h2>
             <p className="font-varela text-xl text-gray-600">{t('explore')}</p>
             <LanguageSwitcher />
-            <Link to='/tailwind' />
+            <Link to='/tailwind'>Tailwind</Link>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

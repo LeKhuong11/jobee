@@ -1,3 +1,4 @@
+import { startLoading, stopLoading } from '@context/loadingSlice';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '@services/api';
 import { AxiosError } from 'axios';
@@ -17,13 +18,16 @@ const initialState: HelloState = {
 
 export const fetchHello = createAsyncThunk(
   'fetch/hello',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
+      dispatch(startLoading());
       const response = await api.get('/hello');
       return response.data;
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       return rejectWithValue(error.response?.data || error.message);
+    } finally {
+      dispatch(stopLoading());
     }
   }
 );
